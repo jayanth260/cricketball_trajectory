@@ -88,7 +88,7 @@ python finetune.py --model yolov8n.pt --data /path/to/data.yaml
 
 **Example:**
 ```bash
-# Start fresh training
+# Start fresh pretraining
 python finetune.py --model yolov8s.pt --data ./dataset/data.yaml
 
 # Resume from checkpoint
@@ -132,12 +132,20 @@ The pipeline generates:
 ```
 cricketball_trajectory/
 ├── code/
-    |--- finetune.py              # Model training script
-    ├── track.py                 # Video processing and tracking script
+│   ├── finetune.py          # Model training script
+│   └── track.py             # Video processing and tracking script
+├── examples/                # Example annotated frames
+│   ├── frame_0075.png
+│   ├── frame_0150.png
+│   └── frame_0200.png
+├── models/                  # Trained model weights
+│   └── best.pt              # Fine-tuned YOLOv8s model
+├── results/                 # Processed videos with trajectories
+├── annotations/             # Trajectory data in CSV format
 ├── README.md                # This file
 ├── requirements.txt         # Python dependencies
-├── results/           # Processed videos with trajectories
-├── annotations/              # Trajectory data in CSV format
+├── results.png              # Training results visualization
+└── report.pdf               # Detailed project report
 ```
 
 ## Model Information
