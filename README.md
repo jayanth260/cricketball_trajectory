@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 ## Dependencies
 
-Create a `requirements.txt` file with:
+The `requirements.txt` file includes:
 ```
 ultralytics>=8.0.0
 opencv-python>=4.8.0
@@ -101,7 +101,7 @@ python code/finetune.py --resume ./models/cricket_ball_detector/weights/last.pt 
 To detect and track cricket balls in video footage:
 
 ```bash
-python track.py --video /path/to/video.mp4 --model /path/to/model.pt
+python code/track.py --video /path/to/video.mp4 --model /path/to/model.pt
 ```
 
 **Arguments:**
@@ -114,13 +114,15 @@ python track.py --video /path/to/video.mp4 --model /path/to/model.pt
 
 **Example:**
 ```bash
-python track.py \
+python code/track.py \
   --video ./videos/cricket_match.mp4 \
   --model ./models/best.pt \
-  --output_video_dir ./results/videos \
-  --output_csv_dir ./results/csv \
+  --output_video_dir ./results \
+  --output_csv_dir ./annotations \
   --conf 0.15
 ```
+
+**Note**: A Jupyter notebook (`Cballdetect.ipynb`) is included in the `code/` directory, which provides an intuitive step-by-step workflow of the development process.
 
 ### Output
 
@@ -128,11 +130,18 @@ The pipeline generates:
 - **Processed Video**: Annotated video with ball detection markers and trajectory overlay
 - **CSV File**: Frame-by-frame trajectory data with columns: `frame`, `x`, `y`, `visible`
 
+### Testing Dataset
+
+The model outputs were tested on the cricket videos provided in the assessment:
+- **Dataset Link**: [Google Drive - Cricket Test Videos](https://drive.google.com/file/d/1hnaGuqGuMXaFKI5fhfy8gatzCH-6iMcJ/view?usp=sharing)
+- **Note**: This dataset was used purely for testing model outputs and was not used in training
+
 ## Project Structure
 
 ```
 cricketball_trajectory/
 ├── code/
+│   ├── Cballdetect.ipynb    # Development notebook (intuitive workflow)
 │   ├── finetune.py          # Model training script
 │   └── track.py             # Video processing and tracking script
 ├── examples/                # Example annotated frames
@@ -142,7 +151,9 @@ cricketball_trajectory/
 ├── models/                  # Trained model weights
 │   └── best.pt              # Fine-tuned YOLOv8s model
 ├── results/                 # Processed videos with trajectories
+│   ├── 1_processed.mp4 through 15_processed.mp4
 ├── annotations/             # Trajectory data in CSV format
+│   ├── 1.csv through 15.csv
 ├── README.md                # This file
 ├── requirements.txt         # Python dependencies
 ├── results.png              # Training results visualization
@@ -177,11 +188,10 @@ cricketball_trajectory/
 
 ### Model Files
 
-The trained model file required to replicate results is available:
+The trained model file required to replicate results:
 - **Location**: `./models/best.pt`
-- **Size**: ~12MB
+- **Size**: ~25MB (YOLOv8s)
 - **Format**: PyTorch (.pt)
-- **Download**: [Link to model file if hosted separately]
 
 ## Hyperparameter Calibration
 
@@ -209,7 +219,7 @@ The trained model file required to replicate results is available:
 - **Polynomial Order**: 2 (quadratic fit)
 - **Filter**: Savitzky-Golay
 
-### Results Summary if detection
+### Results Summary
 
 | Metric | Value |
 |--------|-------|
@@ -221,8 +231,24 @@ The trained model file required to replicate results is available:
 ### Processed Videos
 
 Final processed videos with trajectory overlays are available in the `results/` folder:
+- **15 processed videos** (1_processed.mp4 through 15_processed.mp4)
 - Videos show frame-by-frame ball detection with connected trajectory path
 - Each video includes ball position markers and complete trajectory overlay
+
+### Annotation Files
+
+CSV files with per-frame detections are available in the `annotations/` folder (1.csv through 15.csv).
+
+**Example annotation output (from 1.csv):**
+```csv
+frame,x,y,visible
+0,881.6,352.2,1
+1,-1.0,-1.0,0
+2,-1.0,-1.0,0
+...
+```
+- **visible=1**: Ball detected, x,y are centroid coordinates
+- **visible=0**: Ball not detected, x,y set to -1
 
 ### Example Annotated Frames
 
@@ -239,7 +265,9 @@ Sample frames showing detection and trajectory:
 
 ### Training Logs
 The below plots give a detailed analysis of training phase:
-![](results.png)
+
+![Training Results](results.png)
+
 ## Technical Approach
 
 ### Problem Evolution
@@ -283,6 +311,18 @@ Savitzky-Golay filter applied to valid trajectory points:
 - Multi-ball tracking support
 - Real-time processing optimization
 - 3D trajectory reconstruction using calibrated cameras
+
+## Submission Compliance
+
+This repository fulfills all requirements of the EdgeFleet.AI AI/ML Assessment:
+- ✅ Complete code for training, inference, and tracking
+- ✅ Comprehensive README with setup and usage instructions
+- ✅ 15 annotation CSV files (per-frame detections)
+- ✅ Example annotated frames in `examples/`
+- ✅ 15 processed videos with trajectory overlays in `results/`
+- ✅ Hyperparameter calibration results documented
+- ✅ Trained model file (`models/best.pt`)
+- ✅ Detailed report (`report.pdf`) with modeling decisions and improvements
 
 ## Author
 
