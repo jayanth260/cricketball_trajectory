@@ -130,12 +130,6 @@ The pipeline generates:
 - **Processed Video**: Annotated video with ball detection markers and trajectory overlay
 - **CSV File**: Frame-by-frame trajectory data with columns: `frame`, `x`, `y`, `visible`
 
-### Testing Dataset
-
-The model outputs were tested on the cricket videos provided in the assessment:
-- **Dataset Link**: [Google Drive - Cricket Test Videos](https://drive.google.com/file/d/1hnaGuqGuMXaFKI5fhfy8gatzCH-6iMcJ/view?usp=sharing)
-- **Note**: This dataset was used purely for testing model outputs and was not used in training
-
 ## Project Structure
 
 ```
@@ -311,18 +305,6 @@ Savitzky-Golay filter applied to valid trajectory points:
 - Multi-ball tracking support
 - Real-time processing optimization
 - 3D trajectory reconstruction using calibrated cameras
-
-## Submission Compliance
-
-This repository fulfills all requirements of the EdgeFleet.AI AI/ML Assessment:
-- ✅ Complete code for training, inference, and tracking
-- ✅ Comprehensive README with setup and usage instructions
-- ✅ 15 annotation CSV files (per-frame detections)
-- ✅ Example annotated frames in `examples/`
-- ✅ 15 processed videos with trajectory overlays in `results/`
-- ✅ Hyperparameter calibration results documented
-- ✅ Trained model file (`models/best.pt`)
-- ✅ Detailed report (`report.pdf`) with modeling decisions and improvements
 
 ## Author
 
