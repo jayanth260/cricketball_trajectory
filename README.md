@@ -182,10 +182,7 @@ cricketball_trajectory/
 
 ### Model Files
 
-The trained model file required to replicate results:
-- **Location**: `./models/best.pt`
-- **Size**: ~25MB (YOLOv8s)
-- **Format**: PyTorch (.pt)
+The trained model file required to replicate results is in `./models/best.pt`.
 
 ## Hyperparameter Calibration
 
