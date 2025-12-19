@@ -78,21 +78,22 @@ torchvision>=0.15.0
 To train or fine-tune a YOLOv8 model on your cricket ball dataset:
 
 ```bash
-python finetune.py --model yolov8n.pt --data /path/to/data.yaml
+python code/finetune.py --model yolov8n.pt --data /path/to/data.yaml --project ./models
 ```
 
 **Arguments:**
 - `--model`: Base YOLO model to use (default: `yolov8n.pt`)
 - `--data`: Path to dataset configuration YAML file (default: `/content/dataset/data.yaml`)
+- `--project`: Path to save trained models (default: `./project`)
 - `--resume`: Path to checkpoint to resume training (optional)
 
 **Example:**
 ```bash
-# Start fresh pretraining
-python finetune.py --model yolov8s.pt --data ./dataset/data.yaml
+# Start fresh training
+python code/finetune.py --model yolov8s.pt --data ./dataset/data.yaml --project ./models
 
 # Resume from checkpoint
-python finetune.py --resume ./models/cricket_ball_v26/weights/last.pt
+python code/finetune.py --resume ./models/cricket_ball_detector/weights/last.pt --project ./models
 ```
 
 ### Processing Videos

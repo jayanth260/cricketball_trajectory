@@ -6,7 +6,7 @@ import os
 import argparse
 from tqdm import tqdm
 
-def train_model(model_name = "yolov8n.pt", modell = None, data_path ="/content/dataset/data.yaml"  ):
+def train_model(model_name = "yolov8n.pt", modell = None, data_path ="/content/dataset/data.yaml", project_path="./project"  ):
     if modell is None:
         model = YOLO(model_name)
     else:
@@ -21,8 +21,8 @@ def train_model(model_name = "yolov8n.pt", modell = None, data_path ="/content/d
         epochs=100,            
         imgsz=1280,
         batch=16,
-        project = "/content/drive/MyDrive/Edgefleet_Assessment/models",
-        name="cricket_ball_v26",
+        project = project_path,
+        name="cricket_ball_detector",
 
         # --- Overfitting Controls ---
         patience=10,           # Stop if no improvement for 10 epochs (Prevents Overfitting)
@@ -50,6 +50,8 @@ if __name__ == "__main__":
                         help='Path to data.yaml file (default: /content/dataset/data.yaml)')
     parser.add_argument('--resume', type=str, default=None,
                         help='Path to checkpoint to resume training from')
+    parser.add_argument('--project', type=str, default='./project',
+                        help='Path to project directory (default: ./project)')
     
     args = parser.parse_args()
     
@@ -61,5 +63,6 @@ if __name__ == "__main__":
     trained_model = train_model(
         model_name=args.model,
         modell=model_to_use,
-        data_path=args.data
+        data_path=args.data,
+        project_path=args.project
     )
