@@ -200,35 +200,37 @@ The trained model file required to replicate results is available:
 - **Polynomial Order**: 2 (quadratic fit)
 - **Filter**: Savitzky-Golay
 
-### Results Summary
+### Results Summary if detection
 
 | Metric | Value |
 |--------|-------|
-| Training mAP@50 | ~0.95 |
-| Training mAP@50-95 | ~0.75 |
-| Inference Speed | ~25 FPS (1280px, GPU) |
-| Trajectory Accuracy | High (visual validation) |
+| Training mAP@50 | ~0.66 |
+| Training mAP@50-95 | ~0.187 |
 
 ## Results
 
 ### Processed Videos
 
-Final processed videos with trajectory overlays are available:
-- [Link to processed videos folder]
+Final processed videos with trajectory overlays are available in the `results/` folder:
 - Videos show frame-by-frame ball detection with connected trajectory path
+- Each video includes ball position markers and complete trajectory overlay
 
 ### Example Annotated Frames
 
 Sample frames showing detection and trajectory:
-- `examples/frame_0100.jpg` - Early trajectory
-- `examples/frame_0250.jpg` - Mid-flight tracking
-- `examples/frame_0400.jpg` - Complete trajectory arc
 
-### Training Logs (Optional)
+**Early Trajectory**
+![Early trajectory detection](examples/frame_0075.png)
 
-- **WandB Dashboard**: [Add link if available]
-- **TensorBoard**: Run `tensorboard --logdir ./models/cricket_ball_v26` for local viewing
+**Mid-flight Tracking**
+![Mid-flight tracking](examples/frame_0150.png)
 
+**Complete Trajectory Arc**
+![Complete trajectory](examples/frame_0200.png)
+
+### Training Logs
+The below plots give a detailed analysis of training phase:
+![](results.png)
 ## Technical Approach
 
 ### Problem Evolution
@@ -273,18 +275,6 @@ Savitzky-Golay filter applied to valid trajectory points:
 - Real-time processing optimization
 - 3D trajectory reconstruction using calibrated cameras
 
-## License
-
-MIT License - See LICENSE file for details
-
 ## Author
 
 Jayanth - [GitHub](https://github.com/jayanth260)
-
-## Acknowledgments
-
-- Ultralytics YOLOv8 framework
-- OpenCV for video processing
-- SciPy for signal processing
-
-
